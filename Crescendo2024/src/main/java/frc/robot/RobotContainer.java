@@ -13,8 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 ///SUBSYSTEM IMPORTS///
-//import frc.robot.subsystems.MecanumDriveSubsystem;
-import frc.robot.subsystems.LauncherDriveSubsystem;
+import frc.robot.subsystems.MecanumDriveSubsystem;
 
 /**xw
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -27,7 +26,7 @@ public class RobotContainer {
   /// SUBSYSTEMS ///
   //Remmber these are members of the class meaning they should start with the m_ prefix and end with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final LauncherDriveSubsystem m_launcherDriveSubsystem = new LauncherDriveSubsystem();
+  private final MecanumDriveSubsystem m_mecanumDriveSubsystem = new MecanumDriveSubsystem();
 
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -51,7 +50,6 @@ public class RobotContainer {
      *    Commands.run(() -> m_subsystemExample.exampleCommand(args*), m_subsystemExample));
      */
 
-    /*
     m_mecanumDriveSubsystem.setDefaultCommand(
       Commands.run(
         () ->
@@ -60,8 +58,6 @@ public class RobotContainer {
             m_driverController.getLeftX(),
             m_driverController.getRightX()),
         m_mecanumDriveSubsystem));
-    */
-
   }
 
 
@@ -85,17 +81,6 @@ public class RobotContainer {
      *     Single Input Command / Do not use a Command class
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
-
-
-
-    //Run Motors on (A) push
-    m_driverController.a().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.RunMotors(), m_launcherDriveSubsystem));
-
-    //Stop Motors on (B) push
-    m_driverController.b().onTrue(Commands.runOnce(() -> m_launcherDriveSubsystem.StopMotors(), m_launcherDriveSubsystem));
-
-
-
   }
 
   /**
