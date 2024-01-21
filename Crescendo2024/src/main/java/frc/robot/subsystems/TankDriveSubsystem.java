@@ -5,17 +5,27 @@ import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class TankDriveSubsystem extends SubsystemBase {
-  Spark m_left;
-  Spark m_right;
+  Spark m_left1;
+  Spark m_left2;
+  Spark m_right1;
+  Spark m_right2;
   DifferentialDrive m_drive;
 
   public TankDriveSubsystem() {
-    m_left = new Spark(0);
-    m_right = new Spark(1);
+    m_left1 = new Spark(0);
+    m_left2 = new Spark(1);
+    m_right1 = new Spark(2);
+    m_right2 = new Spark(3);
 
-    m_left.setInverted(true); // if you want to invert motor outputs, you must do so here
+    // Invert your motor inputs here
+    m_left1.setInverted(true);
+    m_left2.setInverted(true);
 
-    m_drive = new DifferentialDrive(m_left, m_right);
+    // Set followers
+    m_left1.addFollower(m_left2);
+    m_right1.addFollower(m_right2);
+
+    m_drive = new DifferentialDrive(m_left1, m_right1);
   }
 
   public void driveTank(double leftStick, double rightStick) {
