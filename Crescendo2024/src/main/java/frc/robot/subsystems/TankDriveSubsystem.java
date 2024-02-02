@@ -28,6 +28,7 @@ public class TankDriveSubsystem extends SubsystemBase {
     m_drive = new DifferentialDrive(m_left1, m_right1);
   }
 
+  //TODO: Add proper dampening functions and deadzones
   public void driveTank(double leftStick, double rightStick) {
     m_drive.tankDrive(-leftStick * 0.5, -rightStick * 0.5);
   }
