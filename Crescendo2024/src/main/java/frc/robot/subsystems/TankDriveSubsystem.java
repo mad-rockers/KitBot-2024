@@ -10,6 +10,7 @@ public class TankDriveSubsystem extends SubsystemBase {
   Spark m_right1;
   Spark m_right2;
   DifferentialDrive m_drive;
+  int type;
 
   public TankDriveSubsystem() {
     m_left1 = new Spark(0);
@@ -26,8 +27,32 @@ public class TankDriveSubsystem extends SubsystemBase {
     m_right1.addFollower(m_right2);
 
     m_drive = new DifferentialDrive(m_left1, m_right1);
+
+    type = 0;
   }
 
+  public void changeDrive() {
+    if (type == 0) {
+      type = 1;
+    } else {
+      type = 0;
+    }
+  }
+
+  public void driveAll(double leftStickNSpeed, double rightStick, double rotation) {
+    if (type == 0) {
+      m_drive.tankDrive(
+          (-leftStickNSpeed * Math.abs(leftStickNSpeed) * 0.5),
+          (-rightStick * Math.abs(rightStick) * 0.5));
+    }
+    if (type == 1) {
+      m_drive.arcadeDrive(
+          (leftStickNSpeed * Math.abs(leftStickNSpeed) * 0.5),
+          (rotation * Math.abs(rotation) * 0.5));
+    }
+  }
+
+  /* Disabled/Changed used command to driveAll
   public void driveTank(double leftStick, double rightStick) {
     m_drive.tankDrive(-leftStick, -rightStick);
   }
@@ -39,4 +64,5 @@ public class TankDriveSubsystem extends SubsystemBase {
   public void driveCurvature(double speed, double curvature) {
     m_drive.curvatureDrive(speed, curvature, false);
   }
+  */
 }
