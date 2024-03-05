@@ -7,8 +7,8 @@ public class LauncherSubsystem extends SubsystemBase {
 
   private PWMSparkMax motor1;
   private PWMSparkMax motor2;
-  private static final int motor1Channel = 0;
-  private static final int motor2Channel = 1;
+  private static final int motor1Channel = 4;
+  private static final int motor2Channel = 5;
 
   public LauncherSubsystem() {
     motor1 = new PWMSparkMax(motor1Channel);
