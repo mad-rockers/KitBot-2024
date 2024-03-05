@@ -11,10 +11,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.TankDriveSubsystem;
 
 /**
- * xw This class is where the bulk of the robot should be declared. Since Command-based is a
+ * This class is where the bulk of the robot should be declared. Since Command-based is a
  * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
  * periodic methods (other than the scheduler calls). Instead, the structure of the robot (including
  * subsystems, commands, and trigger mappings) should be declared here.
@@ -25,6 +26,7 @@ public class RobotContainer {
   // Remmber these are members of the class meaning they should start with the m_ prefix and end
   // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  private final LauncherSubsystem m_launcherSubsystem = new LauncherSubsystem();
   private final TankDriveSubsystem m_tankDriveSubsystem = new TankDriveSubsystem();
 
   /// CONTROLLERS ///
@@ -37,10 +39,11 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 
-    /// DEFAULT COMMANDS ///
     /*
-     *  m_subsystemExample.setDefaultCommand(
-     *    Commands.run(() -> m_subsystemExample.exampleCommand(args*), m_subsystemExample));
+     * Set Default Commands.
+     *
+     * There are three Differential Drive modes available in TankDriveSubsystem.
+     * Uncomment the drive mode you wish to use. Don't try to use two drive modes at the same time.
      */
 
     // m_tankDriveSubsystem.setDefaultCommand(
@@ -83,6 +86,20 @@ public class RobotContainer {
      *     Single Input Command / Do not use a Command class
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
+
+    /*
+     * Pressing (A) on the controller will start the launcher's motors. The motors will continue to spin until stopped by pressing the (B) button, even if the (A) button is released.
+     */
+    m_driverController
+        .a()
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.RunMotors(), m_launcherSubsystem));
+
+    /*
+     * Pressing (B) on the controller will stop the launcher's motors.
+     */
+    m_driverController
+        .b()
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.RunMotors(), m_launcherSubsystem));
   }
 
   /**
