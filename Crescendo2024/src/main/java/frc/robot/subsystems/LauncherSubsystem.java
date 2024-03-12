@@ -7,8 +7,8 @@ public class LauncherSubsystem extends SubsystemBase {
 
   private PWMSparkMax motor1;
   private PWMSparkMax motor2;
-  private static final int motor1Channel = 4;
-  private static final int motor2Channel = 5;
+  private static final int motor1Channel = 8;
+  private static final int motor2Channel = 9;
 
   public LauncherSubsystem() {
     motor1 = new PWMSparkMax(motor1Channel);
@@ -24,8 +24,8 @@ public class LauncherSubsystem extends SubsystemBase {
    * Adjust the motor speed here. KitBot doesn't currently support adjusting speed via the controller.
    */
   public void RunMotors() {
-    motor1.set(0.5);
-    motor2.set(0.5);
+    motor1.set(1.0);
+    motor2.set(1.0);
   }
 
   /*

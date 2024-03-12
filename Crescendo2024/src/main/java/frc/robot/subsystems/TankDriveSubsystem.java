@@ -49,7 +49,7 @@ public class TankDriveSubsystem extends SubsystemBase {
    * Control Speed Dampener here.
    */
   private double dampenSpeed(double inp) {
-    return (Math.abs(inp) * inp * 0.5);
+    return (Math.abs(inp) * inp * 0.8);
   }
 
   public void driveTank(double leftStick, double rightStick) {
@@ -58,7 +58,7 @@ public class TankDriveSubsystem extends SubsystemBase {
   }
 
   public void driveArcade(double speed, double rotation) {
-    m_drive.arcadeDrive(dampenSpeed(applyDeadBand(speed)), dampenSpeed(applyDeadBand(rotation)));
+    m_drive.arcadeDrive(dampenSpeed(applyDeadBand(speed)), dampenSpeed(applyDeadBand(-rotation)));
   }
 
   public void driveCurvature(double speed, double curvature) {

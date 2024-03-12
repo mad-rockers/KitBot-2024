@@ -99,7 +99,7 @@ public class RobotContainer {
      */
     m_driverController
         .b()
-        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.RunMotors(), m_launcherSubsystem));
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.StopMotors(), m_launcherSubsystem));
   }
 
   /**
