@@ -17,27 +17,52 @@ public class TankDriveSubsystem extends SubsystemBase {
     m_right1 = new Spark(3);
     m_right2 = new Spark(2);
 
-    // Only invert the lead motor
-    // Do NOT invert the follower motor
+    /*
+     * Only invert the lead motor.
+     * Do NOT invert the follower motor.
+     */
     m_right1.setInverted(true);
 
-    // Set followers
+    /*
+     * Set followers.
+     */
     m_left1.addFollower(m_left2);
     m_right1.addFollower(m_right2);
 
     m_drive = new DifferentialDrive(m_left1, m_right1);
   }
 
-  //TODO: Add proper dampening functions and deadzones
+  /*
+   * Control Dead Band here.
+   */
+  private double applyDeadBand(double inp) {
+    if (Math.abs(inp) > (0.1)) {
+      return inp;
+    }
+    return 0.0;
+  }
+
+  /*
+   * Dampens speed by using the formula:
+   * absoluteValue(input) * input * maxDesiredSpeed
+   *
+   * Control Speed Dampener here.
+   */
+  private double dampenSpeed(double inp) {
+    return (Math.abs(inp) * inp * 0.8);
+  }
+
   public void driveTank(double leftStick, double rightStick) {
-    m_drive.tankDrive(-leftStick * 0.5, -rightStick * 0.5);
+    m_drive.tankDrive(
+        dampenSpeed(applyDeadBand(leftStick)), dampenSpeed(applyDeadBand(rightStick)));
   }
 
   public void driveArcade(double speed, double rotation) {
-    m_drive.arcadeDrive(-speed * 0.5, -rotation * 0.5);
+    m_drive.arcadeDrive(dampenSpeed(applyDeadBand(speed)), dampenSpeed(applyDeadBand(-rotation)));
   }
 
   public void driveCurvature(double speed, double curvature) {
-    m_drive.curvatureDrive(speed, curvature, false);
+    m_drive.curvatureDrive(
+        dampenSpeed(applyDeadBand(speed)), dampenSpeed(applyDeadBand(curvature)), true);
   }
 }
