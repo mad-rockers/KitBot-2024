@@ -28,6 +28,14 @@ public class LauncherSubsystem extends SubsystemBase {
     motor2.set(1.0);
   }
 
+  public void runMotor1() {
+    motor1.set(1.0);
+  }
+
+  public void runMotor2() {
+    motor2.set(1.0);
+  }
+
   /*
    * Explicitly stop the motors.
    */
