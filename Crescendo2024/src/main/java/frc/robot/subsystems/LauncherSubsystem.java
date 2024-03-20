@@ -22,7 +22,7 @@ public class LauncherSubsystem extends SubsystemBase{
     //wind up m_motor1 to pull in note
     public void intakePull() {
         if(debounce == false){
-            m_motor1.set(-0.25);
+            m_motor1.set(-0.60);
             timer.reset();
             timer.start();
         }
@@ -32,8 +32,8 @@ public class LauncherSubsystem extends SubsystemBase{
     public void launch() {
         if(debounce == false){
             debounce = true;
-            m_motor1.set(0.30);
-            m_motor2.set(0.30);
+            m_motor1.set(0.80);
+            m_motor2.set(0.80);
             timer.reset();
             timer.start();
         }

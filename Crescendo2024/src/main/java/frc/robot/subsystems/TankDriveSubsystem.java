@@ -11,7 +11,7 @@ public class TankDriveSubsystem extends SubsystemBase {
   Spark m_right2;
   DifferentialDrive m_drive;
   int type;
-
+  
   public TankDriveSubsystem() {
     m_left1 = new Spark(0);
     m_left2 = new Spark(1);

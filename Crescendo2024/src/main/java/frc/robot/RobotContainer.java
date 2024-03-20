@@ -88,7 +88,7 @@ public class RobotContainer {
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
     m_driverController.x().onTrue(Commands.runOnce(() -> m_launcherSubsystem.intakePull()));
-    m_driverController.y().onTrue(Commands.runOnce(() -> m_launcherSubsystem.intakePull()));
+    m_driverController.y().onTrue(Commands.runOnce(() -> m_launcherSubsystem.launch()));
 
     m_driverController.a().onTrue(Commands.runOnce(() -> m_tankDriveSubsystem.changeDrive()));
   }
