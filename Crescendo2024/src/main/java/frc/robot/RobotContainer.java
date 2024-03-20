@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.TankDriveSubsystem;
 
 /**
@@ -26,6 +27,7 @@ public class RobotContainer {
   // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final TankDriveSubsystem m_tankDriveSubsystem = new TankDriveSubsystem();
+  private final LauncherSubsystem m_launcherSubsystem = new LauncherSubsystem();
 
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
@@ -85,6 +87,9 @@ public class RobotContainer {
      *     Single Input Command / Do not use a Command class
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
+    m_driverController.x().onTrue(Commands.runOnce(() -> m_launcherSubsystem.intakePull()));
+    m_driverController.y().onTrue(Commands.runOnce(() -> m_launcherSubsystem.intakePull()));
+
     m_driverController.a().onTrue(Commands.runOnce(() -> m_tankDriveSubsystem.changeDrive()));
   }
 
