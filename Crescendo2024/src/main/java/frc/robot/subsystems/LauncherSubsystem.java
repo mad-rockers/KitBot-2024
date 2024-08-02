@@ -2,20 +2,23 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.LauncherConstants;
 
 public class LauncherSubsystem extends SubsystemBase {
 
-  private PWMSparkMax motor1;
-  private PWMSparkMax motor2;
-  private static final int motor1Channel = 8;
-  private static final int motor2Channel = 9;
+  private PWMSparkMax frontMotor;
+  private PWMSparkMax rearMotor;
 
   public LauncherSubsystem() {
-    motor1 = new PWMSparkMax(motor1Channel);
-    motor2 = new PWMSparkMax(motor2Channel);
+    frontMotor = new PWMSparkMax(LauncherConstants.frontMotorChannel);
+    rearMotor = new PWMSparkMax(LauncherConstants.rearMotorChannel);
 
-    motor1.stopMotor();
-    motor2.stopMotor();
+    /*
+     * Ensure that both motors are stopped when the LauncherSubsystem
+     * is instantiated.
+     */
+    frontMotor.stopMotor();
+    rearMotor.stopMotor();
   }
 
   /*
@@ -23,24 +26,24 @@ public class LauncherSubsystem extends SubsystemBase {
    *
    * Adjust the motor speed here. KitBot doesn't currently support adjusting speed via the controller.
    */
-  public void RunMotors() {
-    motor1.set(1.0);
-    motor2.set(1.0);
+  public void RunBothMotors() {
+    frontMotor.set(LauncherConstants.firingSpeed);
+    rearMotor.set(LauncherConstants.firingSpeed);
   }
 
-  public void runMotor1() {
-    motor1.set(1.0);
+  public void runFrontMotor() {
+    frontMotor.set(LauncherConstants.firingSpeed);
   }
 
-  public void runMotor2() {
-    motor2.set(1.0);
+  public void runRearMotor() {
+    rearMotor.set(LauncherConstants.firingSpeed);
   }
 
   /*
-   * Explicitly stop the motors.
+   * Stops the motors.
    */
   public void StopMotors() {
-    motor1.stopMotor();
-    motor2.stopMotor();
+    frontMotor.stopMotor();
+    rearMotor.stopMotor();
   }
 }

@@ -92,10 +92,10 @@ public class RobotContainer {
      */
     m_driverController
         .a()
-        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runMotor2(), m_launcherSubsystem));
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runRearMotor(), m_launcherSubsystem));
     m_driverController
         .x()
-        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runMotor1(), m_launcherSubsystem));
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runFrontMotor(), m_launcherSubsystem));
 
     /*
      * Pressing (B) on the controller will stop the launcher's motors.

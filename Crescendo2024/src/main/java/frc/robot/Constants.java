@@ -27,4 +27,11 @@ public final class Constants {
 
     public static final double maximumSpeed = 0.6;
   }
+
+  public static class LauncherConstants {
+    public static final int frontMotorChannel = 8;
+    public static final int rearMotorChannel = 9;
+
+    public static final double firingSpeed = 1.0;
+  }
 }
