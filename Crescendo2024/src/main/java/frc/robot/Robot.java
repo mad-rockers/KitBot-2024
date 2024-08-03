@@ -32,9 +32,9 @@ public class Robot extends TimedRobot {
      */
     SmartDashboard.putString("Software Version:", SoftwareVersionConstants.SW_VERSION);
     SmartDashboard.putNumber("Build Number: ", SoftwareVersionConstants.BUILD_NUMBER);
-    
+
     /*
-     * Print the software version and build number to the console. 
+     * Print the software version and build number to the console.
      */
     System.out.println("Software Version: " + SoftwareVersionConstants.SW_VERSION);
     System.out.println("Build Number: " + SoftwareVersionConstants.BUILD_NUMBER);

@@ -17,9 +17,9 @@ public final class Constants {
   public static class SoftwareVersionConstants {
     /*
      * Contains constants representing the version of the software that is running.
-     * 
-     * SW_VERSION is represented as ["name of robot - name of branch"]. 
-     * 
+     *
+     * SW_VERSION is represented as ["name of robot - name of branch"].
+     *
      * BUILD_NUMBER is an optional field for tracking various builds for a branch.
      * -1 = NO_STATEMENT (i.e., this optional field isn't being used). The master branch's
      * build number will always be -1.
