@@ -10,8 +10,8 @@ public class LauncherSubsystem extends SubsystemBase {
   private PWMSparkMax rearMotor;
 
   public LauncherSubsystem() {
-    frontMotor = new PWMSparkMax(LauncherConstants.frontMotorChannel);
-    rearMotor = new PWMSparkMax(LauncherConstants.rearMotorChannel);
+    frontMotor = new PWMSparkMax(LauncherConstants.FRONT_MOTOR_CHANNEL);
+    rearMotor = new PWMSparkMax(LauncherConstants.REAR_MOTOR_CHANNEL);
 
     /*
      * Ensure that both motors are stopped when the LauncherSubsystem
@@ -27,16 +27,16 @@ public class LauncherSubsystem extends SubsystemBase {
    * Adjust the motor speed here. KitBot doesn't currently support adjusting speed via the controller.
    */
   public void RunBothMotors() {
-    frontMotor.set(LauncherConstants.firingSpeed);
-    rearMotor.set(LauncherConstants.firingSpeed);
+    frontMotor.set(LauncherConstants.FIRING_SPEED);
+    rearMotor.set(LauncherConstants.FIRING_SPEED);
   }
 
   public void runFrontMotor() {
-    frontMotor.set(LauncherConstants.firingSpeed);
+    frontMotor.set(LauncherConstants.FIRING_SPEED);
   }
 
   public void runRearMotor() {
-    rearMotor.set(LauncherConstants.firingSpeed);
+    rearMotor.set(LauncherConstants.FIRING_SPEED);
   }
 
   /*

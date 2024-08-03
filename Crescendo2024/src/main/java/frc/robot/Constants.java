@@ -13,25 +13,40 @@ package frc.robot;
  * constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+  public static class SoftwareVersionConstants {
+    /*
+     * Contains constants representing the version of the software that is running.
+     * 
+     * SW_VERSION is represented as ["name of robot - name of branch"]. 
+     * 
+     * BUILD_NUMBER is an optional field for tracking various builds for a branch.
+     * -1 = NO_STATEMENT (i.e., this optional field isn't being used). The master branch's
+     * build number will always be -1.
+     */
+    public static final String SW_VERSION = "KitBot - basic-updates";
+    public static final int BUILD_NUMBER = -1;
+  }
+
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 0;
+    public static final int K_DRIVER_CONTROLLER_PORT = 0;
   }
 
   public static class DriveTrainConstants {
-    public static final int left1 = 0;
-    public static final int left2 = 1;
-    public static final int right1 = 3;
-    public static final int right2 = 2;
+    public static final int LEFT_1 = 0;
+    public static final int LEFT_2 = 1;
+    public static final int RIGHT_1 = 3;
+    public static final int RIGHT_2 = 2;
 
-    public static final double deadBand = 0.1;
+    public static final double DEAD_BAND = 0.1;
 
-    public static final double maximumSpeed = 0.6;
+    public static final double MAXIMUM_SPEED = 0.6;
   }
 
   public static class LauncherConstants {
-    public static final int frontMotorChannel = 8;
-    public static final int rearMotorChannel = 9;
+    public static final int FRONT_MOTOR_CHANNEL = 8;
+    public static final int REAR_MOTOR_CHANNEL = 9;
 
-    public static final double firingSpeed = 1.0;
+    public static final double FIRING_SPEED = 1.0;
   }
 }

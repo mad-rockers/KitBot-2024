@@ -13,10 +13,10 @@ public class TankDriveSubsystem extends SubsystemBase {
   DifferentialDrive m_drive;
 
   public TankDriveSubsystem() {
-    m_left1 = new Spark(DriveTrainConstants.left1);
-    m_left2 = new Spark(DriveTrainConstants.left2);
-    m_right1 = new Spark(DriveTrainConstants.right1);
-    m_right2 = new Spark(DriveTrainConstants.right2);
+    m_left1 = new Spark(DriveTrainConstants.LEFT_1);
+    m_left2 = new Spark(DriveTrainConstants.LEFT_2);
+    m_right1 = new Spark(DriveTrainConstants.RIGHT_1);
+    m_right2 = new Spark(DriveTrainConstants.RIGHT_2);
 
     /*
      * It is necessary to invert one side of the drive train.
@@ -60,7 +60,7 @@ public class TankDriveSubsystem extends SubsystemBase {
    * to the Differential Drive.
    */
   private double applyDeadBand(double inp) {
-    if (Math.abs(inp) > (DriveTrainConstants.deadBand)) {
+    if (Math.abs(inp) > (DriveTrainConstants.DEAD_BAND)) {
       return inp;
     }
     return 0.0;
@@ -77,7 +77,7 @@ public class TankDriveSubsystem extends SubsystemBase {
    * absoluteValue(input) * input * maxDesiredSpeed
    */
   private double dampenSpeed(double inp) {
-    return (Math.abs(inp) * inp * DriveTrainConstants.maximumSpeed);
+    return (Math.abs(inp) * inp * DriveTrainConstants.MAXIMUM_SPEED);
   }
 
   /*
