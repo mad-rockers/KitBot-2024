@@ -26,7 +26,7 @@ public class LauncherSubsystem extends SubsystemBase {
    *
    * Adjust the motor speed here. KitBot doesn't currently support adjusting speed via the controller.
    */
-  public void RunBothMotors() {
+  public void runBothMotors() {
     frontMotor.set(LauncherConstants.FIRING_SPEED);
     rearMotor.set(LauncherConstants.FIRING_SPEED);
   }

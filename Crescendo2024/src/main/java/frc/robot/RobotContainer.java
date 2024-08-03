@@ -23,7 +23,7 @@ import frc.robot.subsystems.TankDriveSubsystem;
 public class RobotContainer {
 
   /// SUBSYSTEMS ///
-  // Remmber these are members of the class meaning they should start with the m_ prefix and end
+  // These are members of the class meaning they should start with the m_ prefix and end
   // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final LauncherSubsystem m_launcherSubsystem = new LauncherSubsystem();
@@ -42,16 +42,10 @@ public class RobotContainer {
     /*
      * Set Default Commands.
      *
-     * There are three Differential Drive modes available in TankDriveSubsystem.
-     * Uncomment the drive mode you wish to use. Don't try to use two drive modes at the same time.
+     * Default commands run for a given subsystem when no other commands are being
+     * sent to said subsystem. This is excellent for things like the drive train or
+     * for a camera which would be analyzing data constantly throughout a match.
      */
-
-    // m_tankDriveSubsystem.setDefaultCommand(
-    //     Commands.run(
-    //         () ->
-    //             m_tankDriveSubsystem.driveTank(
-    //                 m_driverController.getLeftY(), m_driverController.getRightY()),
-    //         m_tankDriveSubsystem));
 
     m_tankDriveSubsystem.setDefaultCommand(
         Commands.run(
@@ -59,13 +53,6 @@ public class RobotContainer {
                 m_tankDriveSubsystem.driveArcade(
                     m_driverController.getLeftY(), m_driverController.getRightX()),
             m_tankDriveSubsystem));
-
-    // m_tankDriveSubsystem.setDefaultCommand(
-    //     Commands.run(
-    //         () ->
-    //             m_tankDriveSubsystem.driveCurvature(
-    //                 m_driverController.getLeftY(), m_driverController.getRightX()),
-    //         m_tankDriveSubsystem));
   }
 
   /**
@@ -96,6 +83,9 @@ public class RobotContainer {
     m_driverController
         .x()
         .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runFrontMotor(), m_launcherSubsystem));
+    m_driverController
+        .y()
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runBothMotors(), m_launcherSubsystem));
 
     /*
      * Pressing (B) on the controller will stop the launcher's motors.
