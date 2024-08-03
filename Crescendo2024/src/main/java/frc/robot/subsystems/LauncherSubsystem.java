@@ -35,8 +35,21 @@ public class LauncherSubsystem extends SubsystemBase {
     frontMotor.set(LauncherConstants.FIRING_SPEED);
   }
 
+  /*
+   * The rear motor does not need to spin at full speed. So, we'll spin it at
+   * a fraction of the FIRING_SPEED.
+   *
+   * This:
+   * - saves power, which can be crucial over the course of a match
+   * - puts less wear and tear on the note (the orange donut)
+   */
   public void runRearMotor() {
-    rearMotor.set(LauncherConstants.FIRING_SPEED);
+    rearMotor.set(LauncherConstants.FIRING_SPEED * LauncherConstants.REAR_MOTOR_REDUCTION_FACTOR);
+  }
+
+  public void loadNote() {
+    frontMotor.set(LauncherConstants.LOADING_SPEED);
+    rearMotor.set(LauncherConstants.LOADING_SPEED);
   }
 
   /*

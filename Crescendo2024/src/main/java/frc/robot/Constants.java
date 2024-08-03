@@ -48,5 +48,7 @@ public final class Constants {
     public static final int REAR_MOTOR_CHANNEL = 9;
 
     public static final double FIRING_SPEED = 1.0;
+    public static final double REAR_MOTOR_REDUCTION_FACTOR = 0.5;
+    public static final double LOADING_SPEED = -0.3;
   }
 }

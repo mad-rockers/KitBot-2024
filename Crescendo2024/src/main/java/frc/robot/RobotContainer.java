@@ -82,6 +82,7 @@ public class RobotContainer {
         .rightTrigger()
         .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runFrontMotor(), m_launcherSubsystem));
     m_driverController.y().onTrue(new LaunchSequenceCommand(m_launcherSubsystem));
+    m_driverController.x().onTrue(Commands.runOnce(() -> m_launcherSubsystem.loadNote()));
 
     /*
      * Pressing (B) on the controller will stop the launcher's motors.
