@@ -58,7 +58,7 @@ public class LaunchSequenceCommand extends Command {
     m_launcherSubsystem.StopMotors();
     m_timer.stop();
     m_timer.reset();
-    m_isFinished = true;
+    m_isFinished = false;
   }
 
   // Returns true when the command should end.
