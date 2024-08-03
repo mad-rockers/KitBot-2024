@@ -76,10 +76,10 @@ public class RobotContainer {
      */
 
     m_driverController
-        .a()
+        .rightBumper()
         .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runRearMotor(), m_launcherSubsystem));
     m_driverController
-        .x()
+        .rightTrigger()
         .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runFrontMotor(), m_launcherSubsystem));
     m_driverController.y().onTrue(new LaunchSequenceCommand(m_launcherSubsystem));
 
