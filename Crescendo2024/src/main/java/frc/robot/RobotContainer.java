@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.LaunchSequenceCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.TankDriveSubsystem;
@@ -74,18 +75,13 @@ public class RobotContainer {
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
 
-    /*
-     * Pressing (A) on the controller will start the launcher's motors. The motors will continue to spin until stopped by pressing the (B) button, even if the (A) button is released.
-     */
     m_driverController
         .a()
         .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runRearMotor(), m_launcherSubsystem));
     m_driverController
         .x()
         .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runFrontMotor(), m_launcherSubsystem));
-    m_driverController
-        .y()
-        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runBothMotors(), m_launcherSubsystem));
+    m_driverController.y().onTrue(new LaunchSequenceCommand(m_launcherSubsystem));
 
     /*
      * Pressing (B) on the controller will stop the launcher's motors.
