@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Autos;
+import frc.robot.commands.LaunchSequenceCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.LauncherSubsystem;
 import frc.robot.subsystems.TankDriveSubsystem;
@@ -23,7 +24,7 @@ import frc.robot.subsystems.TankDriveSubsystem;
 public class RobotContainer {
 
   /// SUBSYSTEMS ///
-  // Remmber these are members of the class meaning they should start with the m_ prefix and end
+  // These are members of the class meaning they should start with the m_ prefix and end
   // with the Subsystem suffix
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final LauncherSubsystem m_launcherSubsystem = new LauncherSubsystem();
@@ -32,7 +33,7 @@ public class RobotContainer {
   /// CONTROLLERS ///
   // Replace with CommandPS4Controller or CommandJoystick if needed
   private final CommandXboxController m_driverController =
-      new CommandXboxController(OperatorConstants.kDriverControllerPort);
+      new CommandXboxController(OperatorConstants.K_DRIVER_CONTROLLER_PORT);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -42,16 +43,10 @@ public class RobotContainer {
     /*
      * Set Default Commands.
      *
-     * There are three Differential Drive modes available in TankDriveSubsystem.
-     * Uncomment the drive mode you wish to use. Don't try to use two drive modes at the same time.
+     * Default commands run for a given subsystem when no other commands are being
+     * sent to said subsystem. This is excellent for things like the drive train or
+     * for a camera which would be analyzing data constantly throughout a match.
      */
-
-    // m_tankDriveSubsystem.setDefaultCommand(
-    //     Commands.run(
-    //         () ->
-    //             m_tankDriveSubsystem.driveTank(
-    //                 m_driverController.getLeftY(), m_driverController.getRightY()),
-    //         m_tankDriveSubsystem));
 
     m_tankDriveSubsystem.setDefaultCommand(
         Commands.run(
@@ -59,13 +54,6 @@ public class RobotContainer {
                 m_tankDriveSubsystem.driveArcade(
                     m_driverController.getLeftY(), m_driverController.getRightX()),
             m_tankDriveSubsystem));
-
-    // m_tankDriveSubsystem.setDefaultCommand(
-    //     Commands.run(
-    //         () ->
-    //             m_tankDriveSubsystem.driveCurvature(
-    //                 m_driverController.getLeftY(), m_driverController.getRightX()),
-    //         m_tankDriveSubsystem));
   }
 
   /**
@@ -87,15 +75,14 @@ public class RobotContainer {
      *     m_driverController.y().onTrue(Commands.runOnce(() -> m_subsystemExample.exampleMethod(), m_subsystemExample));
      */
 
-    /*
-     * Pressing (A) on the controller will start the launcher's motors. The motors will continue to spin until stopped by pressing the (B) button, even if the (A) button is released.
-     */
     m_driverController
-        .a()
-        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runMotor2(), m_launcherSubsystem));
+        .rightBumper()
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runRearMotor(), m_launcherSubsystem));
     m_driverController
-        .x()
-        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runMotor1(), m_launcherSubsystem));
+        .rightTrigger()
+        .onTrue(Commands.runOnce(() -> m_launcherSubsystem.runFrontMotor(), m_launcherSubsystem));
+    m_driverController.y().onTrue(new LaunchSequenceCommand(m_launcherSubsystem));
+    m_driverController.x().onTrue(Commands.runOnce(() -> m_launcherSubsystem.loadNote()));
 
     /*
      * Pressing (B) on the controller will stop the launcher's motors.

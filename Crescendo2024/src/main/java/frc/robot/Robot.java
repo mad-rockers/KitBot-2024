@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.Constants.SoftwareVersionConstants;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -26,10 +27,20 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    /*
+     * Print the software version and build number to the SmartDashboard.
+     */
+    SmartDashboard.putString("Software Version:", SoftwareVersionConstants.SW_VERSION);
+    SmartDashboard.putNumber("Build Number: ", SoftwareVersionConstants.BUILD_NUMBER);
+
+    /*
+     * Print the software version and build number to the console.
+     */
+    System.out.println("Software Version: " + SoftwareVersionConstants.SW_VERSION);
+    System.out.println("Build Number: " + SoftwareVersionConstants.BUILD_NUMBER);
+
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    SmartDashboard.putString("Software Version:", "Mecanum Drive Test Bench");
-    System.out.println("Software Version: Mecanum Drive Test Bench");
     m_robotContainer = new RobotContainer();
   }
 
