@@ -41,6 +41,8 @@ public final class Constants {
     public static final double DEAD_BAND = 0.1;
 
     public static final double MAXIMUM_SPEED = 0.6;
+
+    public static final double STEP_SIZE = 0.05;
   }
 
   public static class LauncherConstants {
