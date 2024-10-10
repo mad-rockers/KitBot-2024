@@ -24,7 +24,7 @@ public final class Constants {
      * -1 = NO_STATEMENT (i.e., this optional field isn't being used). The master branch's
      * build number will always be -1.
      */
-    public static final String SW_VERSION = "KitBot - basic-updates";
+    public static final String SW_VERSION = "KitBot - main";
     public static final int BUILD_NUMBER = -1;
   }
 
